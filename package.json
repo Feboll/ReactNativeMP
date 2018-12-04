@@ -4,9 +4,11 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
+    "android": "react-native run-android",
     "test": "jest"
   },
   "dependencies": {
+    "expo": "^31.0.6",
     "react": "16.6.1",
     "react-native": "0.57.5",
     "react-native-gesture-handler": "^1.0.10",
@@ -20,5 +22,10 @@
   },
   "jest": {
     "preset": "react-native"
+  },
+  "rnpm": {
+    "assets": [
+      "./src/assets/fonts/"
+    ]
   }
 }
