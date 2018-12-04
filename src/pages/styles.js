@@ -47,6 +47,20 @@ const styles = StyleSheet.create({
         fontSize: 25,
         borderRadius: 5,
         fontFamily: 'vincHand',
+    },
+    productList: {
+        flex: 1,
+    },
+    product: {
+        flexDirection: 'row',
+        marginBottom: 10,
+        flex: 1,
+        backgroundColor: '#ccc',
+    },
+    productName: {
+        fontSize: 20,
+        color: '#555555',
+        fontFamily: 'vincHand',
     }
 });
 
