@@ -1,13 +1,15 @@
 import React from "react";
-import {Button, Text, View, TextInput, ScrollView} from "react-native";
+import {Text, View, ScrollView} from "react-native";
+import {colors, styles} from './styles';
+import products from './data';
 
 class Products extends React.Component {
     static state = {};
     render() {
         const {navigate} = this.props.navigation;
         return (
-            <View>
-                <Text>Products</Text>
+            <View style={styles.container}>
+                <Text style={styles.title}>Products</Text>
                 <ScrollView>
 
                 </ScrollView>
