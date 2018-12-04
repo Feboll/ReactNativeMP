@@ -49,16 +49,39 @@ const styles = StyleSheet.create({
         fontFamily: 'vincHand',
     },
     productList: {
-        flex: 1,
+        width: '100%',
     },
     product: {
         flexDirection: 'row',
         marginBottom: 10,
-        flex: 1,
-        backgroundColor: '#ccc',
+        alignItems: 'center',
+        padding: 10,
+        borderBottomColor: '#555555',
+        borderBottomWidth: 1,
+    },
+    productHead: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        width: '100%',
+        marginBottom: 20,
+    },
+    productTitle: {
+        fontSize: 30,
+        color: '#555555',
+        marginLeft: 20,
+        fontFamily: 'vincHand',
+    },
+    productAbout: {
+        fontSize: 20,
+        color: '#555555',
+        fontFamily: 'vincHand',
     },
     productName: {
-        fontSize: 20,
+        fontSize: 30,
+        flex: 1,
+        marginLeft: 10,
+        marginRight: 10,
         color: '#555555',
         fontFamily: 'vincHand',
     }

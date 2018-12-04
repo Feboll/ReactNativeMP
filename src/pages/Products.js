@@ -14,11 +14,15 @@ class Products extends React.Component {
                 <Text style={styles.title}>Products</Text>
                 <ScrollView style={styles.productList}>
                     {products.map(product => (
-                        <View key={product.id} style={styles.product} onPress={() => navigate('Product', {product})}>
-                            <Image style={{ width: 20, height: 20}} source={product.icon} />
-                            <Text>{product.name}</Text>
+                        <TouchableOpacity
+                            key={product.id}
+                            style={styles.product}
+                            onPress={() => navigate('Product', {product})}
+                        >
+                            <Image style={{ width: 40, height: 40}} source={product.icon} />
+                            <Text style={styles.productName}>{product.name}</Text>
                             <Image style={{ width: 20, height: 20}} source={require(`../assets/svg/right-arrow.svg`)} />
-                        </View>
+                        </TouchableOpacity>
                     ))}
                 </ScrollView>
             </View>
