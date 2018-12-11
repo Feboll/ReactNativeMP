@@ -5,6 +5,9 @@ import {colors, styles} from './styles';
 import {products} from './data';
 
 class Products extends React.Component {
+    static navigationOptions = {
+        title: 'Products',
+    };
     static state = {};
 
     render() {

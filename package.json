@@ -8,6 +8,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "expo": "^31.0.6",
     "react": "16.6.1",
     "react-native": "0.57.5",

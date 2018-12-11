@@ -4,6 +4,14 @@ import Image from 'react-native-remote-svg'
 import {colors, styles} from "./styles";
 
 class Product extends React.Component {
+    static navigationOptions = ({ navigation }) => {
+        const {product} = navigation.state.params;
+
+        return {
+            title: product.name,
+        }
+    };
+
     static state = {};
     render() {
         const {navigate} = this.props.navigation;
