@@ -79,9 +79,55 @@ const styles = StyleSheet.create({
     },
     productName: {
         fontSize: 30,
-        flex: 1,
+        flex: 2,
         marginLeft: 10,
         marginRight: 10,
+        color: '#555555',
+        fontFamily: 'vincHand',
+    },
+    productPrice: {
+        fontSize: 30,
+        marginLeft: 10,
+        marginRight: 10,
+        color: '#555555',
+        fontFamily: 'vincHand',
+    }
+});
+
+const modalStyle = StyleSheet.create({
+    container: {
+        flex: 1,
+        margin: 10,
+        justifyContent: 'center',
+    },
+    body: {
+        borderColor: '#697689',
+        borderRadius: 5,
+        borderWidth: 1,
+        backgroundColor: '#ffffff',
+        padding: 15,
+    },
+    message: {
+        color: '#555555',
+        fontFamily: 'vincHand',
+        fontSize: 30,
+    },
+    actionList: {
+        flexDirection: 'row',
+        marginLeft: -15,
+        marginRight: -15,
+        marginBottom: -15,
+        borderTopWidth: 1,
+        borderColor: '#697689',
+        marginTop: 15,
+    },
+    action: {
+        height: 40,
+        justifyContent: 'center',
+        flex: 1,
+        alignItems: 'center',
+    },
+    actionLabel: {
         color: '#555555',
         fontFamily: 'vincHand',
     }
@@ -91,4 +137,5 @@ const styles = StyleSheet.create({
 export {
     colors,
     styles,
+    modalStyle,
 };
