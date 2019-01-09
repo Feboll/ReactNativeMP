@@ -1,7 +1,7 @@
 import React from "react";
-import {TouchableOpacity, Text, View, TextInput, ToastAndroid} from "react-native";
+import {TouchableOpacity, Text, View, TextInput, ToastAndroid, Modal, TouchableHighlight} from "react-native";
 import axios from "axios";
-import {colors, styles} from './styles';
+import {colors, styles, modalStyle} from './styles';
 
 
 class Home extends React.Component {
@@ -15,6 +15,8 @@ class Home extends React.Component {
             email: '',
             password: '',
             disabled: true,
+            showError: false,
+            modalVisible: false,
         };
     }
 
@@ -37,19 +39,55 @@ class Home extends React.Component {
             }
         }).then((response) => {
             const {navigate} = this.props.navigation;
+            this.setModalVisible(false);
             ToastAndroid.show(`Hello, ${this.state.email}`, ToastAndroid.SHORT);
             navigate('Products');
         }).catch((error) => {
-            ToastAndroid.show(`you have some problem. Try again!`, ToastAndroid.LONG);
+            this.setModalVisible(true);
+            ToastAndroid.show(`Try again!`, ToastAndroid.LONG);
         });
     };
 
+
     checkLogin = () => !this.state.email && !this.state.password;
 
-    render() {
+    setModalVisible(visible) {
+        this.setState({modalVisible: visible});
+    }
 
+    render() {
         return (
             <View style={styles.container}>
+                <Modal
+                    animationType="slide"
+                    transparent
+                    onRequestClose={() => {
+                    }}
+                    visible={this.state.modalVisible}
+                >
+                    <View style={modalStyle.container}>
+                        <View style={modalStyle.body}>
+                            <Text style={modalStyle.message}>Login failed! Try again</Text>
+
+                            <View style={modalStyle.actionList}>
+                                <TouchableHighlight
+                                    style={modalStyle.action}
+                                    onPress={() => this.onLogin()}
+                                >
+                                    <Text style={modalStyle.actionLabel}>Try again</Text>
+                                </TouchableHighlight>
+                                <TouchableHighlight
+                                    style={modalStyle.action}
+                                    onPress={() => this.setModalVisible(!this.state.modalVisible)}
+                                >
+                                    <Text style={modalStyle.actionLabel}>Close</Text>
+                                </TouchableHighlight>
+                            </View>
+                        </View>
+                    </View>
+
+                </Modal>
+
                 <Text style={styles.title}>Friday's shop</Text>
                 <TextInput
                     placeholder={'email'}
