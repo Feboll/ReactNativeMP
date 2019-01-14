@@ -12,9 +12,9 @@ class Home extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            email: '',
-            password: '',
-            disabled: true,
+            email: 'yury_aniskou@epam.com',
+            password: 'k9k3971K9K',
+            disabled: false,
             showError: false,
             modalVisible: false,
         };
@@ -38,7 +38,7 @@ class Home extends React.Component {
                 'Content-Type': 'application/json',
             }
         }).then((response) => {
-            const {navigate} = this.props.navigation;
+            const {navigation: {navigate}} = this.props;
             this.setModalVisible(false);
             ToastAndroid.show(`Hello, ${this.state.email}`, ToastAndroid.SHORT);
             navigate('Products');

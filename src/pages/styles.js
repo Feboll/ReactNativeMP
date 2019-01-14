@@ -91,7 +91,10 @@ const styles = StyleSheet.create({
         marginRight: 10,
         color: '#555555',
         fontFamily: 'vincHand',
-    }
+    },
+    viewPager: {
+        flex: 1
+    },
 });
 
 const modalStyle = StyleSheet.create({
