@@ -130,7 +130,10 @@ const modalStyle = StyleSheet.create({
     actionLabel: {
         color: '#555555',
         fontFamily: 'vincHand',
-    }
+    },
+    viewPager: {
+        flex: 1
+    },
 });
 
 
