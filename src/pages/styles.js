@@ -17,8 +17,11 @@ const colors = {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
         alignItems: 'center',
+        justifyContent: 'center',
+        padding: 10,
+    },
+    containerProduct: {
         padding: 10,
     },
     title: {
@@ -61,7 +64,7 @@ const styles = StyleSheet.create({
     },
     productHead: {
         flexDirection: 'row',
-        alignItems: 'center',
+        alignItems: 'flex-start',
         justifyContent: 'flex-start',
         width: '100%',
         marginBottom: 20,
@@ -71,6 +74,17 @@ const styles = StyleSheet.create({
         color: '#555555',
         marginLeft: 20,
         fontFamily: 'vincHand',
+    },
+    productAttrBox: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    productAttr: {
+        fontSize: 25,
+        color: '#555555',
+        marginLeft: 20,
+        fontFamily: 'vincHand',
+        marginRight: 20,
     },
     productAbout: {
         fontSize: 20,
@@ -132,6 +146,10 @@ const modalStyle = StyleSheet.create({
         fontFamily: 'vincHand',
     },
     viewPager: {
+        flex: 1,
+        height: '100%',
+    },
+    viewPage: {
         flex: 1
     },
 });
