@@ -31,6 +31,12 @@ const styles = StyleSheet.create({
         fontFamily: 'vincHand',
         marginBottom: 10,
     },
+    error: {
+        fontSize: 30,
+        color: '#ff0a00',
+        fontFamily: 'vincHand',
+        marginBottom: 10,
+    },
     input: {
         backgroundColor: "#FBFBFB",
         borderColor: '#697689',
@@ -42,6 +48,9 @@ const styles = StyleSheet.create({
         width: '100%',
         fontSize: 20,
         fontFamily: 'vincHand',
+    },
+    inputError: {
+        borderColor: '#ff0a00',
     },
     btn: {
         padding: 10,
