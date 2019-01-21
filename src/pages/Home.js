@@ -1,6 +1,6 @@
 import React from "react";
 import {TouchableOpacity, Text, View, TextInput, ToastAndroid, Modal, TouchableHighlight,
-    LayoutAnimation, UIManager} from "react-native";
+    LayoutAnimation, UIManager, NetInfo, Vibration, AsyncStorage} from "react-native";
 import axios from "axios";
 import {colors, styles, modalStyle} from './styles';
 
@@ -46,7 +46,17 @@ class Home extends React.Component {
             const {navigation: {navigate}} = this.props;
             this.setModalVisible(false);
             ToastAndroid.show(`Hello, ${this.state.email}`, ToastAndroid.SHORT);
-            navigate('Products');
+
+            const _storeData = async () => {
+                try {
+                    await AsyncStorage.setItem('@Store:user_email', this.state.email);
+                    await AsyncStorage.setItem('@Store:user_password', this.state.email);
+                    await AsyncStorage.setItem('@Store:user_token', response);
+                    navigate('Products');
+                } catch (error) {
+                    // Error saving data
+                }
+            }
 
         }).catch((error) => {
             // this.setModalVisible(true);
@@ -57,10 +67,30 @@ class Home extends React.Component {
     };
 
 
-    checkLogin = () => !this.state.email && !this.state.password;
-
     setModalVisible(visible) {
         this.setState({modalVisible: visible});
+    }
+
+    componentDidMount(): void {
+        NetInfo.getConnectionInfo().then((connectionInfo) => {
+            if (connectionInfo.type === 'none') {
+                ToastAndroid.show('Check your internet connection!');
+                Vibration.vibrate(500);
+            }
+        });
+
+        const {navigation: {navigate}} = this.props;
+
+        const _retrieveData = async () => {
+            try {
+                const user_token = await AsyncStorage.getItem('user_token');
+                if (user_token !== null) {
+                    navigate('Products');
+                }
+            } catch (error) {
+                // Error retrieving data
+            }
+        }
     }
 
     render() {
