@@ -78,7 +78,7 @@ class Products extends React.Component {
                         <TouchableOpacity
                             key={item.id}
                             style={styles.product}
-                            onPress={() => navigate('Product', {item})}
+                            onPress={() => navigate('Product', {product: item})}
                         >
                             <Text style={styles.productName}>{item.name}</Text>
                             <Text style={styles.productPrice}>{item.price}</Text>

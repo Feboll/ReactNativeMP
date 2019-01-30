@@ -1,8 +1,8 @@
 import React from "react";
-import {TouchableOpacity, Text, View, TextInput, ToastAndroid, Modal, TouchableHighlight} from "react-native";
+import {TouchableOpacity, Text, View, TextInput, ToastAndroid, Modal, TouchableHighlight,
+    LayoutAnimation, UIManager} from "react-native";
 import axios from "axios";
 import {colors, styles, modalStyle} from './styles';
-
 
 class Home extends React.Component {
     static navigationOptions = {
@@ -11,6 +11,7 @@ class Home extends React.Component {
 
     constructor(props) {
         super(props);
+        UIManager.setLayoutAnimationEnabledExperimental(true);
         this.state = {
             email: '',
             password: '',
@@ -18,9 +19,11 @@ class Home extends React.Component {
             showError: false,
             modalVisible: false,
         };
+
     }
 
     formEdit = (value) => {
+        LayoutAnimation.configureNext(LayoutAnimation.Presets.linear);
         this.setState(value, () => {
             this.setState({
                 disabled: !(this.state.email && this.state.password),
@@ -29,7 +32,9 @@ class Home extends React.Component {
     };
 
     onLogin = () => {
+        this.setState({showError: false});
         const login = 'http://ecsc00a02fb3.epam.com/index.php/rest/V1/integration/customer/token';
+
         axios.post(login, {
             username: this.state.email,
             password: this.state.password,
@@ -38,13 +43,16 @@ class Home extends React.Component {
                 'Content-Type': 'application/json',
             }
         }).then((response) => {
-            const {navigate} = this.props.navigation;
+            const {navigation: {navigate}} = this.props;
             this.setModalVisible(false);
             ToastAndroid.show(`Hello, ${this.state.email}`, ToastAndroid.SHORT);
             navigate('Products');
+
         }).catch((error) => {
-            this.setModalVisible(true);
+            // this.setModalVisible(true);
             ToastAndroid.show(`Try again!`, ToastAndroid.LONG);
+            LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
+            this.setState({showError: true});
         });
     };
 
@@ -61,8 +69,7 @@ class Home extends React.Component {
                 <Modal
                     animationType="slide"
                     transparent
-                    onRequestClose={() => {
-                    }}
+                    onRequestClose={() => {}}
                     visible={this.state.modalVisible}
                 >
                     <View style={modalStyle.container}>
@@ -89,20 +96,22 @@ class Home extends React.Component {
                 </Modal>
 
                 <Text style={styles.title}>Friday's shop</Text>
+
                 <TextInput
                     placeholder={'email'}
-                    style={styles.input}
+                    style={[styles.input, this.state.showError && styles.inputError]}
                     onChangeText={(text) => this.formEdit({email: text})}
                     value={this.state.email}
                 />
                 <TextInput
                     placeholder={'password'}
-                    style={styles.input}
+                    style={[styles.input, this.state.showError && styles.inputError]}
                     secureTextEntry
                     textContentType={'password'}
                     onChangeText={(text) => this.formEdit({password: text})}
                     value={this.state.password}
                 />
+                {this.state.showError && <Text style={styles.error}>Check you email or password</Text>}
                 <TouchableOpacity disabled={this.state.disabled} onPress={() => this.onLogin()}>
                     <Text
                         style={[styles.btn, colors.btn[this.state.disabled ? 'disabled' : 'active']]}
