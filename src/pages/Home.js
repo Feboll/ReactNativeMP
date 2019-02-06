@@ -4,9 +4,10 @@ import {
     LayoutAnimation, UIManager, NetInfo, Vibration, AsyncStorage
 } from 'react-native';
 import axios from 'axios';
-
+import LottieView from 'lottie-react-native';
 import {colors, styles, modalStyle} from './styles';
 import {Button} from 'react-native-elements';
+import loader from '../animation/loader';
 
 class Home extends React.Component {
     static navigationOptions = ({navigation}) => {
@@ -46,7 +47,7 @@ class Home extends React.Component {
     };
 
     onLogin = () => {
-        this.setState({showError: false});
+        this.setState({showError: false, load: true});
         const login = 'http://ecsc00a02fb3.epam.com/index.php/rest/V1/integration/customer/token';
 
         axios.post(login, {
@@ -60,6 +61,7 @@ class Home extends React.Component {
             const {navigation: {navigate}} = this.props;
             this.setModalVisible(false);
             ToastAndroid.show(`Hello, ${this.state.email}`, ToastAndroid.SHORT);
+            this.setState({load: false});
 
             const _storeData = async () => {
                 try {
@@ -74,6 +76,7 @@ class Home extends React.Component {
 
         }).catch((error) => {
             // this.setModalVisible(true);
+            this.setState({load: false});
             ToastAndroid.show(`Try again!`, ToastAndroid.LONG);
             LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
             this.setState({showError: true});
@@ -85,9 +88,7 @@ class Home extends React.Component {
         this.setState({modalVisible: visible});
     }
 
-    componentDidMount()
-        :
-        void {
+    componentDidMount(): void {
         NetInfo.getConnectionInfo().then((connectionInfo) => {
             if (connectionInfo.type === 'none') {
                 ToastAndroid.show('Check your internet connection!');
@@ -159,13 +160,17 @@ class Home extends React.Component {
                     value={this.state.password}
                 />
                 {this.state.showError && <Text style={styles.error}>Check you email or password</Text>}
-                <TouchableOpacity disabled={this.state.disabled} onPress={() => this.onLogin()}>
-                    <Text
-                        style={[styles.btn, colors.btn[this.state.disabled ? 'disabled' : 'active']]}
-                    >
+
+                {!this.state.load ? <TouchableOpacity disabled={this.state.disabled} onPress={() => this.onLogin()}>
+                    <Text style={[styles.btn, colors.btn[this.state.disabled ? 'disabled' : 'active']]}>
                         Login
                     </Text>
-                </TouchableOpacity>
+                </TouchableOpacity> : <LottieView
+                    source={require('../animation/loader.json')}
+                    autoPlay
+                    loop
+                />}
+
             </View>
         );
     }
