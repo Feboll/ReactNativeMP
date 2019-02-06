@@ -7,7 +7,7 @@ import axios from 'axios';
 import LottieView from 'lottie-react-native';
 import {colors, styles, modalStyle} from './styles';
 import {Button} from 'react-native-elements';
-import loader from '../animation/loader';
+import SplashScreen from 'react-native-splash-screen'
 
 class Home extends React.Component {
     static navigationOptions = ({navigation}) => {
@@ -89,6 +89,8 @@ class Home extends React.Component {
     }
 
     componentDidMount(): void {
+        SplashScreen.hide();
+
         NetInfo.getConnectionInfo().then((connectionInfo) => {
             if (connectionInfo.type === 'none') {
                 ToastAndroid.show('Check your internet connection!');
