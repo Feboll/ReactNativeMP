@@ -1,13 +1,27 @@
-import React from "react";
-import {TouchableOpacity, Text, View, TextInput, ToastAndroid, Modal, TouchableHighlight,
-    LayoutAnimation, UIManager, NetInfo, Vibration, AsyncStorage} from "react-native";
-import axios from "axios";
+import React from 'react';
+import {
+    TouchableOpacity, Text, View, TextInput, ToastAndroid, Modal, TouchableHighlight,
+    LayoutAnimation, UIManager, NetInfo, Vibration, AsyncStorage
+} from 'react-native';
+import axios from 'axios';
+
 import {colors, styles, modalStyle} from './styles';
+import {Button} from 'react-native-elements';
 
 class Home extends React.Component {
-    static navigationOptions = {
-        title: 'Login',
-    };
+    static navigationOptions = ({navigation}) => {
+        const {navigate} = navigation;
+        return {
+            title: 'Login',
+            headerRight: (
+                <Button
+                    onPress={() => navigate('Info')}
+                    title="Info"
+                    color="#fff"
+                />
+            ),
+        };
+    }
 
     constructor(props) {
         super(props);
@@ -71,7 +85,9 @@ class Home extends React.Component {
         this.setState({modalVisible: visible});
     }
 
-    componentDidMount(): void {
+    componentDidMount()
+        :
+        void {
         NetInfo.getConnectionInfo().then((connectionInfo) => {
             if (connectionInfo.type === 'none') {
                 ToastAndroid.show('Check your internet connection!');
@@ -99,7 +115,8 @@ class Home extends React.Component {
                 <Modal
                     animationType="slide"
                     transparent
-                    onRequestClose={() => {}}
+                    onRequestClose={() => {
+                    }}
                     visible={this.state.modalVisible}
                 >
                     <View style={modalStyle.container}>
