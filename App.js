@@ -4,6 +4,7 @@ import {Animated, Easing} from 'react-native';
 import Home from "./src/pages/Home";
 import Products from "./src/pages/Products";
 import Product from "./src/pages/Product";
+import Info from './src/pages/Info';
 
 const SlideFromRight = (index, position, width) => {
     const translateX = position.interpolate({
@@ -33,6 +34,7 @@ const App = createStackNavigator({
     Home: {screen: Home},
     Products: {screen: Products},
     Product: {screen: Product},
+    Info: {screen: Info},
 }, {
     transitionConfig: TransitionConfiguration,
 });

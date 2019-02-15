@@ -1,13 +1,28 @@
-import React from "react";
-import {TouchableOpacity, Text, View, TextInput, ToastAndroid, Modal, TouchableHighlight,
-    LayoutAnimation, UIManager, NetInfo, Vibration, AsyncStorage} from "react-native";
-import axios from "axios";
+import React from 'react';
+import {
+    TouchableOpacity, Text, View, TextInput, ToastAndroid, Modal, TouchableHighlight,
+    LayoutAnimation, UIManager, NetInfo, Vibration, AsyncStorage
+} from 'react-native';
+import axios from 'axios';
+import LottieView from 'lottie-react-native';
 import {colors, styles, modalStyle} from './styles';
+import {Button} from 'react-native-elements';
+import SplashScreen from 'react-native-splash-screen'
 
 class Home extends React.Component {
-    static navigationOptions = {
-        title: 'Login',
-    };
+    static navigationOptions = ({navigation}) => {
+        const {navigate} = navigation;
+        return {
+            title: 'Login',
+            headerRight: (
+                <Button
+                    onPress={() => navigate('Info')}
+                    title="Info"
+                    color="#fff"
+                />
+            ),
+        };
+    }
 
     constructor(props) {
         super(props);
@@ -32,7 +47,7 @@ class Home extends React.Component {
     };
 
     onLogin = () => {
-        this.setState({showError: false});
+        this.setState({showError: false, load: true});
         const login = 'http://ecsc00a02fb3.epam.com/index.php/rest/V1/integration/customer/token';
 
         axios.post(login, {
@@ -46,6 +61,7 @@ class Home extends React.Component {
             const {navigation: {navigate}} = this.props;
             this.setModalVisible(false);
             ToastAndroid.show(`Hello, ${this.state.email}`, ToastAndroid.SHORT);
+            this.setState({load: false});
 
             const _storeData = async () => {
                 try {
@@ -60,6 +76,7 @@ class Home extends React.Component {
 
         }).catch((error) => {
             // this.setModalVisible(true);
+            this.setState({load: false});
             ToastAndroid.show(`Try again!`, ToastAndroid.LONG);
             LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
             this.setState({showError: true});
@@ -72,6 +89,8 @@ class Home extends React.Component {
     }
 
     componentDidMount(): void {
+        SplashScreen.hide();
+
         NetInfo.getConnectionInfo().then((connectionInfo) => {
             if (connectionInfo.type === 'none') {
                 ToastAndroid.show('Check your internet connection!');
@@ -99,7 +118,8 @@ class Home extends React.Component {
                 <Modal
                     animationType="slide"
                     transparent
-                    onRequestClose={() => {}}
+                    onRequestClose={() => {
+                    }}
                     visible={this.state.modalVisible}
                 >
                     <View style={modalStyle.container}>
@@ -142,13 +162,17 @@ class Home extends React.Component {
                     value={this.state.password}
                 />
                 {this.state.showError && <Text style={styles.error}>Check you email or password</Text>}
-                <TouchableOpacity disabled={this.state.disabled} onPress={() => this.onLogin()}>
-                    <Text
-                        style={[styles.btn, colors.btn[this.state.disabled ? 'disabled' : 'active']]}
-                    >
+
+                {!this.state.load ? <TouchableOpacity disabled={this.state.disabled} onPress={() => this.onLogin()}>
+                    <Text style={[styles.btn, colors.btn[this.state.disabled ? 'disabled' : 'active']]}>
                         Login
                     </Text>
-                </TouchableOpacity>
+                </TouchableOpacity> : <LottieView
+                    source={require('../animation/loader.json')}
+                    autoPlay
+                    loop
+                />}
+
             </View>
         );
     }
