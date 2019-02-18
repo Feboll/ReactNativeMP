@@ -1,9 +1,10 @@
 import React from "react";
-import {Text, View, ScrollView, TouchableOpacity, Dimensions} from "react-native";
-import {TabView, TabBar, SceneMap} from 'react-native-tab-view';
+import {Text, View, ScrollView, TouchableOpacity, Dimensions, AsyncStorage, Alert} from 'react-native';
+import {TabView, SceneMap} from 'react-native-tab-view';
 import Image from 'react-native-remote-svg'
 import {colors, styles} from "./styles";
 
+import NotifService from '../helpers/NotifService';
 
 class Product extends React.Component {
     static navigationOptions = ({navigation}) => {
@@ -13,6 +14,25 @@ class Product extends React.Component {
             title: product.name,
         }
     };
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            index: 0,
+            user_token: null,
+            routes: [
+                {key: 'main', title: 'Name'},
+                {key: 'map', title: 'Info'}
+            ],
+        }
+
+        this.notif = new NotifService(this.onRegister.bind(this), Product.onNotif.bind(this));
+    }
+
+    componentDidMount(): void {
+        AsyncStorage.getItem('user_token').then(user_token => user_token !== null && this.setState({user_token}))
+            .catch((error) => console.error(error));
+    }
 
     MainRoute = () => {
         const {product} = this.props.navigation.state.params;
@@ -29,7 +49,7 @@ class Product extends React.Component {
         return (
         <ScrollView>
             {product.custom_attributes.map(attr => (
-                <View style={styles.productAttrBox}>
+                <View key={attr.attribute_code} style={styles.productAttrBox}>
                     <Text style={styles.productAttr}>{attr.attribute_code}:</Text>
                     <Text style={styles.productAbout}>{attr.value}</Text>
                 </View>
@@ -38,16 +58,24 @@ class Product extends React.Component {
         </ScrollView>
     )};
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            index: 0,
-            routes: [
-                {key: 'main', title: 'Name'},
-                {key: 'map', title: 'Map'}
-            ],
-        }
+    onRegister(token) {
+        this.setState({ registerToken: token.token, gcmRegistered: true });
     }
+
+    static onNotif(notif) {
+        console.log(notif);
+        Alert.alert(notif.title, notif.message);
+    }
+
+
+    toCart = (e) => {
+        e.preventDefault();
+        const {product: {name}} = this.props.navigation.state.params;
+        this.notif.localNotif({
+            title: 'Cart updated',
+            message: `${name} added to cart.`,
+        });
+    };
 
     render() {
         const {navigate} = this.props.navigation;
@@ -61,9 +89,12 @@ class Product extends React.Component {
                         map: this.MapRoute,
                     })}
                     onIndexChange={index => this.setState({index})}
-                    initialLayout={{width: Dimensions.get('window').width}}
+                    initialLayout={{width: Dimensions.get('window').width, height: Dimensions.get('window').height}}
                 />
                 <View style={styles.containerProduct}>
+                    <TouchableOpacity onPress={this.toCart}>
+                        <Text style={[styles.btn, colors.btn.active]}>To Card</Text>
+                    </TouchableOpacity>
                     <TouchableOpacity onPress={() => navigate('Products')}>
                         <Text style={[styles.btn, colors.btn.active]}>All products</Text>
                     </TouchableOpacity>

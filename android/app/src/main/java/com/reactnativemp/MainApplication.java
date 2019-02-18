@@ -3,8 +3,8 @@ package com.reactnativemp;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.dieam.reactnativepushnotification.ReactNativePushNotificationPackage;
 import org.devio.rn.splashscreen.SplashScreenReactPackage;
-import com.wix.reactnativenotifications.RNNotificationsPackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
 import com.airbnb.android.react.lottie.LottiePackage;
@@ -28,7 +28,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
-              new RNNotificationsPackage(MainApplication.this),
+            new ReactNativePushNotificationPackage(),
             new SplashScreenReactPackage(),
             new RNGestureHandlerPackage(),
             new RNDeviceInfo(),

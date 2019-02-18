@@ -56,6 +56,7 @@ const styles = StyleSheet.create({
         padding: 10,
         paddingTop: 5,
         paddingBottom: 5,
+        marginTop: 5,
         fontSize: 25,
         borderRadius: 5,
         fontFamily: 'vincHand',
