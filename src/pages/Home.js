@@ -93,8 +93,8 @@ class Home extends React.Component {
 
         const {navigation: {navigate}} = this.props;
 
-        AsyncStorage.getItem('user_token').then(user_token => user_token !== null && navigate('Products'))
-            .catch((error) => console.error(error));
+        // AsyncStorage.getItem('user_token').then(user_token => user_token !== null && navigate('Products'))
+        //     .catch((error) => console.error(error));
     }
 
     render() {
