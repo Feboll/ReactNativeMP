@@ -6,6 +6,11 @@ import Products from "./src/pages/Products";
 import Product from "./src/pages/Product";
 import Info from './src/pages/Info';
 
+import { Sentry } from 'react-native-sentry';
+
+Sentry.config('https://5339c83ffe23433f8b0c09cfcb27ae86@sentry.io/1402903').install();
+
+
 const SlideFromRight = (index, position, width) => {
     const translateX = position.interpolate({
         inputRange: [index - 1, index, index + 1],

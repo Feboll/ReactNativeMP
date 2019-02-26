@@ -45,6 +45,9 @@
 		2D3A98EA842D4C06BBCB03E5 /* libLottieReactNative.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E368F6CE46D47AE878B42C2 /* libLottieReactNative.a */; };
 		2FB10671035A4E7B96240BF9 /* libSplashScreen.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D28567B45724BDF896D60FA /* libSplashScreen.a */; };
 		787F9ADCFF214FBCA49CD26C /* libRNNotifications.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2138251077FA4ECA972F9263 /* libRNNotifications.a */; };
+		E89B45791D4F4F2FBA44CEE1 /* libRNSentry.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4416A09B65D541FD89271BD5 /* libRNSentry.a */; };
+		718708D0458E4A5B990FBD5F /* libRNSentry-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F6DD66B124D34939B4859306 /* libRNSentry-tvOS.a */; };
+		3A25C8026B7E46688FA6D9CA /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BF9CA8A3C71453382FD2D4D /* libz.tbd */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -363,6 +366,10 @@
 		4D28567B45724BDF896D60FA /* libSplashScreen.a */ = {isa = PBXFileReference; name = "libSplashScreen.a"; path = "libSplashScreen.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		0CD2E3F2559C461F8A95B59A /* RNNotifications.xcodeproj */ = {isa = PBXFileReference; name = "RNNotifications.xcodeproj"; path = "../node_modules/react-native-notifications/RNNotifications/RNNotifications.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		2138251077FA4ECA972F9263 /* libRNNotifications.a */ = {isa = PBXFileReference; name = "libRNNotifications.a"; path = "libRNNotifications.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		A5BD40A722F94D8FB04F1DE3 /* RNSentry.xcodeproj */ = {isa = PBXFileReference; name = "RNSentry.xcodeproj"; path = "../node_modules/react-native-sentry/ios/RNSentry.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		4416A09B65D541FD89271BD5 /* libRNSentry.a */ = {isa = PBXFileReference; name = "libRNSentry.a"; path = "libRNSentry.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		F6DD66B124D34939B4859306 /* libRNSentry-tvOS.a */ = {isa = PBXFileReference; name = "libRNSentry-tvOS.a"; path = "libRNSentry-tvOS.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		0BF9CA8A3C71453382FD2D4D /* libz.tbd */ = {isa = PBXFileReference; name = "libz.tbd"; path = "usr/lib/libz.tbd"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = sourcecode.text-based-dylib-definition; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -395,6 +402,8 @@
 				2D3A98EA842D4C06BBCB03E5 /* libLottieReactNative.a in Frameworks */,
 				2FB10671035A4E7B96240BF9 /* libSplashScreen.a in Frameworks */,
 				787F9ADCFF214FBCA49CD26C /* libRNNotifications.a in Frameworks */,
+				E89B45791D4F4F2FBA44CEE1 /* libRNSentry.a in Frameworks */,
+				3A25C8026B7E46688FA6D9CA /* libz.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -411,6 +420,7 @@
 				2D02E4C71E0B4AEC006451C7 /* libRCTText-tvOS.a in Frameworks */,
 				2D02E4C81E0B4AEC006451C7 /* libRCTWebSocket-tvOS.a in Frameworks */,
 				82F88898A54B42AB925972A4 /* libRNDeviceInfo-tvOS.a in Frameworks */,
+				718708D0458E4A5B990FBD5F /* libRNSentry-tvOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -545,6 +555,7 @@
 			isa = PBXGroup;
 			children = (
 				2D16E6891FA4F8E400B85C8A /* libReact.a */,
+				0BF9CA8A3C71453382FD2D4D /* libz.tbd */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -587,6 +598,7 @@
 				5F6A2A0E9EDD4819BDA06C91 /* LottieReactNative.xcodeproj */,
 				187E7BE79FED4A0F9F26B8CD /* SplashScreen.xcodeproj */,
 				0CD2E3F2559C461F8A95B59A /* RNNotifications.xcodeproj */,
+				A5BD40A722F94D8FB04F1DE3 /* RNSentry.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -645,6 +657,14 @@
 			sourceTree = "<group>";
 			path = "";
 		};
+		C714ABD55EF84C02814BCC39 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			path = Application;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -674,6 +694,7 @@
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
+				C03C7EE3E81B4AFC9DAD85C8 /* Upload Debug Symbols to Sentry */,
 			);
 			buildRules = (
 			);
@@ -1126,7 +1147,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
+			shellScript = "export SENTRY_PROPERTIES=sentry.properties\nexport NODE_BINARY=node\n../node_modules/@sentry/cli/bin/sentry-cli react-native xcode ../node_modules/react-native/scripts/react-native-xcode.sh";
 		};
 		2D02E4CB1E0B4B27006451C7 /* Bundle React Native Code And Images */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1140,7 +1161,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
+			shellScript = "export SENTRY_PROPERTIES=sentry.properties\nexport NODE_BINARY=node\n../node_modules/@sentry/cli/bin/sentry-cli react-native xcode ../node_modules/react-native/scripts/react-native-xcode.sh";
+		};
+		C03C7EE3E81B4AFC9DAD85C8 /* Upload Debug Symbols to Sentry */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			name = "Upload Debug Symbols to Sentry";
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			shellPath = /bin/sh;
+			shellScript = "export SENTRY_PROPERTIES=sentry.properties\n../node_modules/@sentry/cli/bin/sentry-cli upload-dsym";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1233,6 +1268,8 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1241,6 +1278,7 @@
 					"$(SRCROOT)\..\node_modules\lottie-react-native\src\ios\LottieReactNative",
 					"$(SRCROOT)\..\node_modules\react-native-splash-screen\ios",
 					"$(SRCROOT)\..\node_modules\react-native-notifications\RNNotifications",
+					"$(SRCROOT)\..\node_modules\react-native-sentry\ios/**",
 				);
 			};
 			name = Debug;
@@ -1268,6 +1306,8 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1276,6 +1316,7 @@
 					"$(SRCROOT)\..\node_modules\lottie-react-native\src\ios\LottieReactNative",
 					"$(SRCROOT)\..\node_modules\react-native-splash-screen\ios",
 					"$(SRCROOT)\..\node_modules\react-native-notifications\RNNotifications",
+					"$(SRCROOT)\..\node_modules\react-native-sentry\ios/**",
 				);
 			};
 			name = Release;
@@ -1303,6 +1344,7 @@
 					"$(SRCROOT)\..\node_modules\lottie-react-native\src\ios\LottieReactNative",
 					"$(SRCROOT)\..\node_modules\react-native-splash-screen\ios",
 					"$(SRCROOT)\..\node_modules\react-native-notifications\RNNotifications",
+					"$(SRCROOT)\..\node_modules\react-native-sentry\ios/**",
 				);
 			};
 			name = Debug;
@@ -1329,6 +1371,7 @@
 					"$(SRCROOT)\..\node_modules\lottie-react-native\src\ios\LottieReactNative",
 					"$(SRCROOT)\..\node_modules\react-native-splash-screen\ios",
 					"$(SRCROOT)\..\node_modules\react-native-notifications\RNNotifications",
+					"$(SRCROOT)\..\node_modules\react-native-sentry\ios/**",
 				);
 			};
 			name = Release;
@@ -1364,6 +1407,8 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1372,6 +1417,7 @@
 					"$(SRCROOT)\..\node_modules\lottie-react-native\src\ios\LottieReactNative",
 					"$(SRCROOT)\..\node_modules\react-native-splash-screen\ios",
 					"$(SRCROOT)\..\node_modules\react-native-notifications\RNNotifications",
+					"$(SRCROOT)\..\node_modules\react-native-sentry\ios/**",
 				);
 			};
 			name = Debug;
@@ -1407,6 +1453,8 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1415,6 +1463,7 @@
 					"$(SRCROOT)\..\node_modules\lottie-react-native\src\ios\LottieReactNative",
 					"$(SRCROOT)\..\node_modules\react-native-splash-screen\ios",
 					"$(SRCROOT)\..\node_modules\react-native-notifications\RNNotifications",
+					"$(SRCROOT)\..\node_modules\react-native-sentry\ios/**",
 				);
 			};
 			name = Release;
@@ -1449,6 +1498,8 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1457,6 +1508,7 @@
 					"$(SRCROOT)\..\node_modules\lottie-react-native\src\ios\LottieReactNative",
 					"$(SRCROOT)\..\node_modules\react-native-splash-screen\ios",
 					"$(SRCROOT)\..\node_modules\react-native-notifications\RNNotifications",
+					"$(SRCROOT)\..\node_modules\react-native-sentry\ios/**",
 				);
 			};
 			name = Debug;
@@ -1491,6 +1543,8 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1499,6 +1553,7 @@
 					"$(SRCROOT)\..\node_modules\lottie-react-native\src\ios\LottieReactNative",
 					"$(SRCROOT)\..\node_modules\react-native-splash-screen\ios",
 					"$(SRCROOT)\..\node_modules\react-native-notifications\RNNotifications",
+					"$(SRCROOT)\..\node_modules\react-native-sentry\ios/**",
 				);
 			};
 			name = Release;

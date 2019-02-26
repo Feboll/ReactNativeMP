@@ -105,7 +105,7 @@ class Home extends React.Component {
                     transparent
                     onRequestClose={() => {
                     }}
-                    visible={this.state.modalVisible}
+                    visible={this.statew.modalVisible}
                 >
                     <View style={modalStyle.container}>
                         <View style={modalStyle.body}>
