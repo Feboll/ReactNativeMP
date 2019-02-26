@@ -1,11 +1,20 @@
 import React from "react";
-import {Text, View, ScrollView, TouchableOpacity, FlatList, ToastAndroid, ActivityIndicator} from "react-native";
+import {
+    Text,
+    View,
+    ScrollView,
+    TouchableOpacity,
+    FlatList,
+    ToastAndroid,
+    ActivityIndicator,
+    AsyncStorage, LayoutAnimation, Alert
+} from 'react-native';
 import { List, ListItem, SearchBar } from "react-native-elements";
 import Image from 'react-native-remote-svg'
 import {colors, styles} from './styles';
 import {products} from './data';
 import axios from "axios";
-
+import NotifService from '../helpers/NotifService';
 
 class Products extends React.Component {
     static navigationOptions = {
@@ -21,10 +30,54 @@ class Products extends React.Component {
             totalCount: -1,
             loading: false,
         };
+
+        this.notif = new NotifService(this.onRegister.bind(this), this.onNotif.bind(this));
+    }
+
+    onRegister(token) {
+        this.setState({ registerToken: token.token, gcmRegistered: true });
+    }
+
+    onNotif(notif) {
+        console.log(notif);
+        Alert.alert(notif.title, notif.message);
     }
 
     componentDidMount(): void {
         this.getItems();
+
+        AsyncStorage.getItem('quoteId').then(quoteId => {
+            if (quoteId === null) {
+                AsyncStorage.getItem('user_token')
+                    .then(user_token => {
+                        console.log(user_token);
+                        if (user_token !== null) {
+                            const addToCard = 'http://ecsc00a02fb3.epam.com/rest/default/V1/carts/mine';
+
+                            axios.post(addToCard, {}, {
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'Authorization': `Bearer ${user_token}`,
+                                }
+                            }).then((response) => {
+                                const {data} = response;
+                                AsyncStorage.setItem('quoteId', data);
+                                this.notif.localNotif({
+                                    message: `Cart created #${data}.`,
+                                });
+                            }).catch((error) => {
+                                console.error(error);
+                            });
+                        }
+                    }).catch((error) => console.error(error))
+            } else {
+                this.notif.localNotif({
+                    message: `Cart created #${quoteId}.`,
+                });
+            }
+        }
+
+        );
     }
 
     getItems = () => {

@@ -7,7 +7,7 @@ import axios from 'axios';
 import LottieView from 'lottie-react-native';
 import {colors, styles, modalStyle} from './styles';
 import {Button} from 'react-native-elements';
-import SplashScreen from 'react-native-splash-screen'
+import SplashScreen from 'react-native-splash-screen';
 
 class Home extends React.Component {
     static navigationOptions = ({navigation}) => {
@@ -34,7 +34,6 @@ class Home extends React.Component {
             showError: false,
             modalVisible: false,
         };
-
     }
 
     formEdit = (value) => {
@@ -59,21 +58,15 @@ class Home extends React.Component {
             }
         }).then((response) => {
             const {navigation: {navigate}} = this.props;
+            const {data} = response;
             this.setModalVisible(false);
             ToastAndroid.show(`Hello, ${this.state.email}`, ToastAndroid.SHORT);
             this.setState({load: false});
 
-            const _storeData = async () => {
-                try {
-                    await AsyncStorage.setItem('@Store:user_email', this.state.email);
-                    await AsyncStorage.setItem('@Store:user_password', this.state.email);
-                    await AsyncStorage.setItem('@Store:user_token', response);
-                    navigate('Products');
-                } catch (error) {
-                    // Error saving data
-                }
-            }
-
+            AsyncStorage.setItem('user_email', this.state.email);
+            AsyncStorage.setItem('user_password', this.state.password);
+            AsyncStorage.setItem('user_token', data);
+            navigate('Products');
         }).catch((error) => {
             // this.setModalVisible(true);
             this.setState({load: false});
@@ -100,16 +93,8 @@ class Home extends React.Component {
 
         const {navigation: {navigate}} = this.props;
 
-        const _retrieveData = async () => {
-            try {
-                const user_token = await AsyncStorage.getItem('user_token');
-                if (user_token !== null) {
-                    navigate('Products');
-                }
-            } catch (error) {
-                // Error retrieving data
-            }
-        }
+        // AsyncStorage.getItem('user_token').then(user_token => user_token !== null && navigate('Products'))
+        //     .catch((error) => console.error(error));
     }
 
     render() {
