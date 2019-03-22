@@ -141,6 +141,11 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-splash-screen')
+    compile project(':react-native-push-notification')
+    compile project(':react-native-gesture-handler')
+    compile project(':react-native-device-info')
+    compile project(':lottie-react-native')
     implementation project(':react-native-push-notification')
     implementation project(':react-native-splash-screen')
     implementation project(':react-native-gesture-handler')

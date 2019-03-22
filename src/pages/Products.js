@@ -12,7 +12,6 @@ import {
 import { List, ListItem, SearchBar } from "react-native-elements";
 import Image from 'react-native-remote-svg'
 import {colors, styles} from './styles';
-import {products} from './data';
 import axios from "axios";
 import NotifService from '../helpers/NotifService';
 
@@ -135,7 +134,7 @@ class Products extends React.Component {
                         >
                             <Text style={styles.productName}>{item.name}</Text>
                             <Text style={styles.productPrice}>{item.price}</Text>
-                            <Image style={{width: 20, height: 20}} source={require(`../assets/svg/right-arrow.svg`)} />
+                            <Image style={{width: 20, height: 20}} source={require(`../assets/svg/right-arrow.png`)} />
                         </TouchableOpacity>
                     )}
                     ListFooterComponent={() => this.renderFooter()}
