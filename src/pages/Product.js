@@ -16,6 +16,7 @@ import {colors, styles} from "./styles";
 
 import NotifService from '../helpers/NotifService';
 import axios from 'axios';
+import Security from '../helpers/Security';
 
 class Product extends React.Component {
     static navigationOptions = ({navigation}) => {
@@ -41,7 +42,7 @@ class Product extends React.Component {
     }
 
     componentDidMount(): void {
-        AsyncStorage.getItem('user_token')
+        Security.getToken()
             .then(user_token => user_token !== null && this.setState({user_token}))
             .catch((error) => console.error(error));
     }
