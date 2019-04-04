@@ -8,6 +8,7 @@ import LottieView from 'lottie-react-native';
 import {colors, styles, modalStyle} from './styles';
 import {Button} from 'react-native-elements';
 import SplashScreen from 'react-native-splash-screen';
+import Security from '../helpers/Security';
 
 class Home extends React.Component {
     static navigationOptions = ({navigation}) => {
@@ -59,14 +60,12 @@ class Home extends React.Component {
         }).then((response) => {
             const {navigation: {navigate}} = this.props;
             const {data} = response;
-            this.setModalVisible(false);
-            ToastAndroid.show(`Hello, ${this.state.email}`, ToastAndroid.SHORT);
-            this.setState({load: false});
-
-            AsyncStorage.setItem('user_email', this.state.email);
-            AsyncStorage.setItem('user_password', this.state.password);
-            AsyncStorage.setItem('user_token', data);
-            navigate('Products');
+            Security.saveCredential(this.state.email, data).then(() => {
+                this.setModalVisible(false);
+                ToastAndroid.show(`Hello, ${this.state.email}`, ToastAndroid.SHORT);
+                this.setState({load: false});
+                navigate('Products');
+            })
         }).catch((error) => {
             // this.setModalVisible(true);
             this.setState({load: false});

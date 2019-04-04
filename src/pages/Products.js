@@ -2,19 +2,17 @@ import React from "react";
 import {
     Text,
     View,
-    ScrollView,
     TouchableOpacity,
     FlatList,
     ToastAndroid,
     ActivityIndicator,
-    AsyncStorage, LayoutAnimation, Alert
+    AsyncStorage, Alert
 } from 'react-native';
-import { List, ListItem, SearchBar } from "react-native-elements";
 import Image from 'react-native-remote-svg'
-import {colors, styles} from './styles';
-import {products} from './data';
+import {styles} from './styles';
 import axios from "axios";
 import NotifService from '../helpers/NotifService';
+import Security from '../helpers/Security';
 
 class Products extends React.Component {
     static navigationOptions = {
@@ -48,7 +46,7 @@ class Products extends React.Component {
 
         AsyncStorage.getItem('quoteId').then(quoteId => {
             if (quoteId === null) {
-                AsyncStorage.getItem('user_token')
+                Security.getToken()
                     .then(user_token => {
                         console.log(user_token);
                         if (user_token !== null) {
